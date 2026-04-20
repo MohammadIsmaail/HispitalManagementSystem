@@ -63,6 +63,10 @@ router.post("/add-doctor", authMiddleware, roleMiddleware(["admin"]), addDoctorC
 router.get("/all-doctor", authMiddleware, roleMiddleware(["admin", "doctor", "patient"]), getAllDoctorsController);
 router.get("/all-patient", authMiddleware, roleMiddleware(["admin"]), getAllPatientsController);
 router.get("/patient/:id", authMiddleware, roleMiddleware(["admin", "doctor", "patient"]), getPatientByIdController);
+router.get("/all-appointment", authMiddleware, roleMiddleware(["admin"]), getAllAppointmentsController)
+router.get("/all-prescription", authMiddleware, roleMiddleware(["admin"]), getAllPrescriptionsController)
+router.get("/all-bill", authMiddleware, roleMiddleware(["admin"]), getAllBillsController)
+router.get("/all-inventory", authMiddleware, roleMiddleware(["admin"]), getAllInventoryController)
 
 // /:id SABSE LAST mein
 router.get("/:id", authMiddleware, roleMiddleware(["admin", "doctor", "patient"]), getDoctorByIdController);
@@ -78,7 +82,6 @@ router.delete("/delete-patient/:id", authMiddleware, roleMiddleware(["admin"]), 
 
 // Appointment routes
 router.post("/book-appointment", authMiddleware, roleMiddleware(["admin", "patient"]), bookAppointmentController)
-router.get("/all-appointment", authMiddleware, roleMiddleware(["admin"]), getAllAppointmentsController)
 router.get("/appointment/:id", authMiddleware, roleMiddleware(["admin", "doctor", "patient"]), getAppointmentByIdController)
 router.put("/update-appointment/:id", authMiddleware, roleMiddleware(["admin", "doctor"]), updateAppointmentStatusController)
 router.put("/cancel-appointment/:id", authMiddleware, roleMiddleware(["admin", "doctor", "patient"]), cancelAppointmentController)
@@ -86,7 +89,6 @@ router.put("/cancel-appointment/:id", authMiddleware, roleMiddleware(["admin", "
 
 // Prescription routes
 router.post("/add-prescription", authMiddleware, roleMiddleware(["doctor"]), addPrescriptionController)
-router.get("/all-prescription", authMiddleware, roleMiddleware(["admin"]), getAllPrescriptionsController)
 router.get("/prescription/:patientId", authMiddleware, roleMiddleware(["admin", "doctor", "patient"]), getPrescriptionByPatientController)
 router.put("/update-prescription/:id", authMiddleware, roleMiddleware(["doctor"]), updatePrescriptionController)
 router.delete("/delete-prescription/:id", authMiddleware, roleMiddleware(["admin"]), deletePrescriptionController)
@@ -94,7 +96,6 @@ router.delete("/delete-prescription/:id", authMiddleware, roleMiddleware(["admin
 
 // Bill routes
 router.post("/add-bill", authMiddleware, roleMiddleware(["admin"]), addBillController)
-router.get("/all-bill", authMiddleware, roleMiddleware(["admin"]), getAllBillsController)
 router.get("/bill/:patientId", authMiddleware, roleMiddleware(["admin", "doctor", "patient"]), getBillByPatientController)
 router.put("/update-bill/:id", authMiddleware, roleMiddleware(["admin"]), updateBillStatusController)
 router.delete("/delete-bill/:id", authMiddleware, roleMiddleware(["admin"]), deleteBillController)
@@ -102,7 +103,6 @@ router.delete("/delete-bill/:id", authMiddleware, roleMiddleware(["admin"]), del
 
 // Inventory routes
 router.post("/add-inventory", authMiddleware, roleMiddleware(["admin"]), addInventoryController)
-router.get("/all-inventory", authMiddleware, roleMiddleware(["admin"]), getAllInventoryController)
 router.get("/low-stock", authMiddleware, roleMiddleware(["admin"]), getLowStockController)
 router.put("/update-inventory/:id", authMiddleware, roleMiddleware(["admin"]), updateInventoryController)
 router.delete("/delete-inventory/:id", authMiddleware, roleMiddleware(["admin"]), deleteInventoryController)
